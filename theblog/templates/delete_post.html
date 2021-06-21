@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if user.is_authenticated %}
 <h1>Delete Post</h1>
 <div class="mb-3">
 <form method="POST">
@@ -11,4 +12,7 @@
     <button class="btn btn-danger">Yes, Delete</button>
     
 </div>
+{% else %}
+  <h2>You are'nt authenticated</h2>
+{% endif %}
 {% endblock %}
