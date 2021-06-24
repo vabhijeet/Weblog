@@ -19,6 +19,22 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if cat_menu %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% for x in cat_menu %}
+                  <li><a class="dropdown-item" href="{% url 'category' x %}">{{x}}</a></li>
+                  {% endfor %} 
+                  
+                  <!-- <li><a class="dropdown-item" href="#">Another action</a></li> -->
+                  <!-- <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
+              </li>
+              {% endif %}
               {% if user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
@@ -26,9 +42,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'add-post' %}">Add Post</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="{% url 'add-category' %}">Category</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'logout' %}">Logout</a>

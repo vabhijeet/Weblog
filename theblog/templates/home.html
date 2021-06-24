@@ -4,8 +4,12 @@
 <h1>Posts</h1>
 <ul>
 {% for post in object_list %}
-   <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</li>
+   <li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}} <a href="{% url 'category' post.category %}">({{ post.category }})</a></li>
    
 {% endfor %}
+ <!-- {% for items in cat_menu %}
+  {{ item }}<br/>
+ {% endfor %} -->
+   
 </ul>
 {% endblock %}

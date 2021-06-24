@@ -1,0 +1,13 @@
+
+
+{% extends 'base.html' %}
+{% block content %}
+{% if category_post %}
+<h1>{{cats}}</h1>
+{% for post in category_post %}
+<li><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a> - {{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</li>
+{% endfor %}  
+{% else %}  
+ <h3>Sorry this doesn't exists</h3>
+{% endif %}
+{% endblock %}
