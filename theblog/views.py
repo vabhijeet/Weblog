@@ -57,8 +57,8 @@ class DeletePostView(generic.DeleteView):
     template_name= 'delete_post.html'
     success_url=reverse_lazy('home')
     
-    # def get(self, request, *args, **kwargs):
-    #     return self.post(request, *args, **kwargs)
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
     #form_class= UpdateForm
     #fields=['title', 'title_tag', 'body']
             

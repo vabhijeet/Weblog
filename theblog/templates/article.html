@@ -6,8 +6,32 @@
     <br><p class="article-content">{{ post.body }}</p><a href="{% url 'home' %}" class="btn btn-primary">Back</a>
     {% if user.is_authenticated %}
     <a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Edit</a>
-    <a href="{% url 'delete-post' post.pk %}" class="btn btn-danger">Delete</a>
-    
+    <!-- <a href="{% url 'delete-post' post.pk %}" class="btn btn-danger">Delete</a> -->
+    <script type='text/javascript'>
+
+        function foo() {
+        
+        
+        var user_choice = window.confirm('Are you sure?');
+        
+        
+        if(user_choice==true) {
+        
+            window.location.href = "{% url 'delete-post' post.pk %}";
+        
+        
+        } else {
+        
+        
+        return false;
+        
+        
+        }
+        }
+        
+        </script>
+        
+        <input type="button" class="btn btn-danger" onClick="foo()" value="Delete">
     {% endif %}
     
 {% endblock %}
