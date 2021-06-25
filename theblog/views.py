@@ -56,9 +56,21 @@ class DeletePostView(generic.DeleteView):
     model=Post
     template_name= 'delete_post.html'
     success_url=reverse_lazy('home')
-    
+    success_message = "Updated Successfully"
     def get(self, request, *args, **kwargs):
+        obj = super(DeletePostView, self).get_object()
+        if not obj.author == self.request.user:
+            raise Http404
         return self.post(request, *args, **kwargs)
+    
+    # def get(self, queryset=None):
+    #     """ Hook to ensure object is owned by request.user. """
+        
+        
+
+
+    # def get(self, request, *args, **kwargs):
+    #     return self.post(request, *args, **kwargs)
     #form_class= UpdateForm
     #fields=['title', 'title_tag', 'body']
             

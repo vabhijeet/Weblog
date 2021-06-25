@@ -5,6 +5,7 @@
 <div>{{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</div>
     <br><p class="article-content">{{ post.body }}</p><a href="{% url 'home' %}" class="btn btn-primary">Back</a>
     {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
     <a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Edit</a>
     <!-- <a href="{% url 'delete-post' post.pk %}" class="btn btn-danger">Delete</a> -->
     <script type='text/javascript'>
@@ -32,6 +33,7 @@
         </script>
         
         <input type="button" class="btn btn-danger" onClick="foo()" value="Delete">
+        {% endif %}
     {% endif %}
     
 {% endblock %}
