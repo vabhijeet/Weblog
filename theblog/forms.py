@@ -15,9 +15,11 @@ class PostForm(forms.ModelForm):
         widgets={
             'title':forms.TextInput(attrs={'class':'form-control'}),
             'title_tag':forms.TextInput(attrs={'class':'form-control'}),
-            'author':forms.Select(attrs={'class':'form-control'}),
+            'author':forms.TextInput(attrs={'class':'form-control', 'value':'', 'id':'elder','type':'hidden'}),
+            # 'author':forms.Select(attrs={'class':'form-control'}),
             'category':forms.Select(choices=choice_list,attrs={'class':'form-control'}),
             'body':forms.Textarea(attrs={'class':'form-control'}),
+            
         }
 
 class UpdateForm(forms.ModelForm):

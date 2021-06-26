@@ -3,10 +3,18 @@
 {% block content %}
 <h1>{{ post.title }}</h1>
 <div>{{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</div>
-    <br><p class="article-content">{{ post.body }}</p><a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+    <br><p class="article-content">{{ post.body }}</p>
+    
+    <a href="{% url 'home' %}" class="btn btn-primary">Back</a><br/><br/>
     {% if user.is_authenticated %}
+    <form action="{% url 'like-post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button>-{{ total_likes }}(Likes)
+    </form> 
+
+    
     {% if user.id == post.author.id %}
-    <a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Edit</a>
+    <br/><a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Edit</a>
     <!-- <a href="{% url 'delete-post' post.pk %}" class="btn btn-danger">Delete</a> -->
     <script type='text/javascript'>
 

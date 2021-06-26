@@ -1,9 +1,15 @@
-from django.shortcuts import render
-from django.urls.base import reverse_lazy
+from django.shortcuts import get_object_or_404, render,get_list_or_404
+from django.urls.base import reverse_lazy,reverse
 from django.views import generic
 from .models import Category, Post
 from .forms import PostForm,UpdateForm
 from django.http import Http404
+from django.http import HttpResponseRedirect
+
+def LikeView(request,pk):
+    post=get_object_or_404(Post, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('article-detail', args=[str(pk)]))
 
 class HomeView(generic.ListView):
     model=Post
@@ -31,7 +37,10 @@ class ArticleDetailView(generic.DetailView):
     def get_context_data(self, *args, **kwargs):
         cat_menu= Category.objects.all()
         context= super(ArticleDetailView,self).get_context_data(*args, **kwargs)
+        total=get_object_or_404(Post, id=self.kwargs['pk'])
+        total_likes=total.total_likes()
         context["cat_menu"]=cat_menu
+        context["total_likes"]=total_likes
         return context
     
 class AddPostView(generic.CreateView):

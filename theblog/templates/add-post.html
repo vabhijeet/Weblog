@@ -8,6 +8,10 @@
     {{ form.as_p }}
     <button class="btn btn-dark">Add</button>
 </div>
+<script>
+  var name="{{ user.id }}"
+  document.getElementById('elder').value=name
+</script>
 {% else %}
   <h2>You are'nt authenticated</h2>
 {% endif %}
