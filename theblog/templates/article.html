@@ -10,9 +10,23 @@
     <form action="{% url 'like-post' post.pk %}" method="POST">
         {% csrf_token %}
         <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary btn-sm">Like</button>-{{ total_likes }}(Likes)
-    </form> 
-
-    
+    </form> <br/>
+    <h2>Comments</h2>
+    {% if not post.comments.all %}
+     No comments yet <br/><a href="{% url 'add-comment' post.pk %}">Add comment</a>
+    {% else %}
+    <a href="{% url 'add-comment' post.pk %}">Add comment</a>
+    <br/><br/>
+    {% for comment in  post.comments.all%}
+    <strong>
+        {{ comment.name }}-{{ comment.date_added }}
+    </strong>
+    <div>
+        {{ comment.body }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <br/>
     {% if user.id == post.author.id %}
     <br/><a href="{% url 'update-post' post.pk %}" class="btn btn-dark">Edit</a>
     <!-- <a href="{% url 'delete-post' post.pk %}" class="btn btn-danger">Delete</a> -->
