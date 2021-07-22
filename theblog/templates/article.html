@@ -2,9 +2,12 @@
 {% block title %}{{ post.title_tag }}{% endblock %}
 {% block content %}
 <h1>{{ post.title }}</h1>
-<div>{{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</div>
+<div><i>{{ post.author.first_name }} {{post.author.last_name}} - {{post.post_date}}</i></div><hr/>
+{% if post.header_image %}
+<img src="{{ post.header_image.url }}" width="200" height="100" />
+{% endif %}
     <br><p class="article-content">{{ post.body }}</p>
-    
+    <hr/>
     
     {% if user.is_authenticated %}
     <form action="{% url 'like-post' post.pk %}" method="POST">
@@ -58,5 +61,9 @@
         
         {% endif %}
     {% endif %}
-    <a href="{% url 'home' %}" class="btn btn-primary">Back</a><br/><br/>
+    
+    <br/><br/>
+    <div>
+        <a href="{% url 'home' %}" class="btn btn-primary">Back</a>
+    </div><br/><br/>
 {% endblock %}

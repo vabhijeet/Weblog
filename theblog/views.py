@@ -48,6 +48,11 @@ class AddPostView(generic.CreateView):
     form_class= PostForm
     template_name= 'add-post.html'
 
+class UserProfileView(generic.CreateView):
+    model=Post
+    form_class= PostForm
+    template_name= 'add-post.html'    
+
 class AddCommentView(generic.CreateView):
     model=Comment
     form_class=AddCommentForm
